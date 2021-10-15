@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<title>Strona internetowa - Bootstrap Typography and colors</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style1.css" type="text/css" media="screen">
+		
+		<!-- bootstrap 5 -->
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>	
+		<!-- end bootstrap -->
+		
+	</head>
+	<body>
+	
+	<div class="container">
+
+		<div id="czas">
+			<div class="border rounded" id="czas_content">
+			</div>
+			
+			<div id="menu_content">
+				<button type="button" onclick="changeHour()" id="hourchange" class="btn btn-secondary">Hour</button>
+				<button type="button" onclick="changeMinute()" class="btn btn-secondary">Minutes</button>	
+				<button type="button" class="btn btn-secondary">Seconds</button>				
+				<button type="button" class="btn btn-danger">Reset</button>			
+			</div>
+			
+			
+		</div>
+
+	
+	</div>
+		
+		
+		
+	
+	
+<script>
+
+
+	
+	var krop = ':';
+	let chour;
+	let cminute;
+
+	
+	
+	
+	const interval = setInterval(() => {
+
+			let data = new Date();			
+			let hours = data.getHours();
+			var minutes = data.getMinutes();
+			let seconds = data.getSeconds();			
+
+		
+		if(chour != undefined){
+			hours = chour;					//////////////// PRZY ZAISTNIAŁYM KLIKU A NIE RESET SWOJ SYSTEM ZMIANY CZASU
+		}
+		
+		if(cminute != undefined){
+			let mminutes = cminute;
+		    
+			let data = new Date();			
+			data.setMinutes(mminutes);			
+			let hours = data.getHours();
+		    minutes = data.getMinutes();
+			let seconds = data.getSeconds();
+			
+			
+			//console.log(cminute);
+		}
+		
+
+		console.log(minutes);
+		
+
+		const interval2 = setInterval(()=>{
+			if(krop == ':'){
+				krop = '<span style="color:#222222">:</span>';
+			}else{
+				krop = ':';
+				
+			}	
+		},150);
+
+		
+		
+
+		
+		if(minutes>=0 && minutes<10){
+			minutes = '0' + minutes;
+		}	
+		
+		if(seconds>=0 && seconds<10){
+			seconds = '0' + seconds;
+		}
+		
+		
+		let actual = '<span class="hourd">'+hours+'</span>'+krop+'<span class="minuted">'+ minutes +'</span>'+krop+'<span class="secondd">'+ seconds+'</span>';
+		
+		let czas = document.querySelector('#czas_content');
+		czas.innerHTML = actual;
+
+	
+	
+	}, 1000);
+	
+
+		
+	
+
+
+
+
+	function changeHour(){
+		
+		var hourd = document.querySelector('.hourd').innerHTML;
+		
+		//alert(hourd);
+		hourd = parseInt(hourd);
+		if(hourd == 24){
+			hourd = 0;
+		}
+		
+		chour = hourd + 1;
+		
+		return chour;
+	}	
+	
+	
+	
+	function changeMinute(){
+		
+		var minuted = document.querySelector('.minuted').innerHTML;
+		
+		//alert(minuted);
+		minuted = parseInt(minuted);
+		if(minuted == 59){
+			minuted = -1;
+		}
+		
+		cminute = minuted + 1;
+		
+		return cminute;
+	}	
+
+
+
+</script>	
+	
+	</body>
+</html>

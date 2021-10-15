@@ -1,0 +1,12 @@
+@font-face{
+	 font-family:'digital-7';
+	 src: url('../fonts/digital-7.ttf');
+}
+
+#czas_content{
+	font-family: 'digital-7';	
+	font-size:120px;
+	background:#222222;
+	color:#CCFFFF;
+	text-align:center;
+}
